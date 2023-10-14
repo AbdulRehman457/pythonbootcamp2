@@ -1,0 +1,24 @@
+import pandas as pd
+df = pd.read_csv('Documents/electronics.csv')
+max_rating_year = df[df['rating'] == df['rating'].max()]['year'].values[0]
+print(f"The year with the best sales is  {max_rating_year}.")
+
+
+max_rating_month = df[df['rating'] == df['rating'].max()]['timestamp'].values[0]
+print(f"The month with the best sales is  {best_month} ")
+
+max_rating_brand = df[df['rating'] == df['rating'].max()]['brand'].values[0]
+print(f"The brand with the highest sale is: {max_rating_brand}")
+
+max_rating_category = df[df['rating'] == df['rating'].max()]['category'].values[0]
+print(f"The category with the highest sale is: {max_rating_category}")
+
+brand_ratings = df.groupby('brand')['rating'].mean()
+brand_with_lowest_rating = brand_ratings.idxmin()
+lowest_rating = brand_ratings.min()
+print(f"The brand with the least sale is {brand_with_lowest_rating} with least sale of {lowest_rating}.")
+
+category_ratings = df.groupby('category')['rating'].mean()
+category_with_lowest_rating = category_ratings.idxmin()
+category_min_rating = category_ratings.min()
+print(f"The category with the least sale is {category_with_lowest_rating} with least sale of {category_min_rating}.")
